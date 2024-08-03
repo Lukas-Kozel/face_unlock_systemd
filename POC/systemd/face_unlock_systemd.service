@@ -1,0 +1,15 @@
+[Unit]
+Description=Face Unlock Service
+After=graphical.target
+
+[Service]
+ExecStart=/home/luky/playground/face_recognition_unlock/POC/systemd/start_face_unlock.sh
+Restart=always
+User=luky
+Environment="DISPLAY=:1"
+Environment="XAUTHORITY=/run/user/1000/gdm/Xauthority"
+StandardOutput=append:/home/luky/playground/face_recognition_unlock/POC/systemd/logs/face_unlock.log
+StandardError=append:/home/luky/playground/face_recognition_unlock/POC/systemd/logs/face_unlock.log
+
+[Install]
+WantedBy=default.target

@@ -1,0 +1,17 @@
+# Ignore the virtual environment directory
+/venv/
+
+# Ignore all photos in the face_data, authorized, and unauthorized directories
+/POC/face_data/
+/POC/authorized/
+/POC/unauthorized/
+
+# Ignore the known faces and names files
+/POC/known_faces.npy
+/POC/known_names.npy
+
+# Ignore the password file
+/POC/pswd.txt
+
+# Ignore the logs directory
+/POC/systemd/logs/
