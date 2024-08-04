@@ -6,6 +6,9 @@
 /POC/authorized/
 /POC/unauthorized/
 
+/app/cache/
+/app/data/
+
 # Ignore the known faces and names files
 /POC/known_faces.npy
 /POC/known_names.npy
@@ -15,3 +18,13 @@
 
 # Ignore the logs directory
 /POC/systemd/logs/
+
+# Ignore build directory
+/app/build/
+
+# Ignore __pycache__ directories
+__pycache__/
+/app/__pycache__/
+/recognition/__pycache__/
+/tests/__pycache__/
+/*/__pycache__/
