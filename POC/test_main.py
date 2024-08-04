@@ -3,8 +3,8 @@ import cv2
 import numpy as np
 
 def recognize_face():
-    known_faces = np.load('known_faces.npy', allow_pickle=True)
-    known_names = np.load('known_names.npy', allow_pickle=True)
+    known_faces = np.load('/home/luky/playground/face_recognition_unlock/POC/known_faces.npy', allow_pickle=True)
+    known_names = np.load('/home/luky/playground/face_recognition_unlock/POC/known_names.npy', allow_pickle=True)
 
     cap = cv2.VideoCapture(0)
 
@@ -23,8 +23,15 @@ def recognize_face():
             best_match_index = np.argmin(face_distances)
             if matches[best_match_index]:
                 name = known_names[best_match_index]
-
-            label = 'Luky' if name == 'Luky' else 'Unknown'
+            print(name)
+            
+            # Corrected label assignment
+            if name == 'Luky':
+                label = 'Luky'
+            elif name == 'Terka':
+                label = 'Terezie'
+            else:
+                label = 'unknown'
 
             # Draw a box around the face
             cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)

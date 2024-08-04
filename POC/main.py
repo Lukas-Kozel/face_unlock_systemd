@@ -72,7 +72,7 @@ def recognize_face():
                     pyautogui.press('enter')
                     cv2.imwrite(os.path.join(authorized_folder, f'authorized_{timestamp}.jpg'), frame)
                     logging.info(f"Authorized access by {label} at {timestamp}")
-                    time.sleep(5)
+                    time.sleep(2)
                     cap.release()
                     return
                 else:

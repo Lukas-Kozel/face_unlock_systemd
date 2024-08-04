@@ -1,6 +1,7 @@
 [Unit]
 Description=Face Unlock Service
 After=graphical.target
+Requires=graphical.target
 
 [Service]
 ExecStart=/home/luky/playground/face_recognition_unlock/POC/systemd/start_face_unlock.sh

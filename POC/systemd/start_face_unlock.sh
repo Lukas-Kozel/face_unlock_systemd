@@ -5,15 +5,19 @@ exec >> /home/luky/playground/face_recognition_unlock/POC/systemd/logs/face_unlo
 
 echo "Starting face unlock service..."
 
-# Extract the DBUS_SESSION_BUS_ADDRESS
-PID=$(pgrep -u $LOGNAME gnome-session | head -n 1)
-if [ -z "$PID" ]; then
+# Wait for gnome-session to start
+while true; do
+    PID=$(pgrep -u $LOGNAME gnome-session | head -n 1)
+    if [ -n "$PID" ]; then
+        break
+    fi
     echo "gnome-session not found for user $LOGNAME"
-    exit 1
-fi
+    sleep 5
+done
 
 echo "Found gnome-session PID: $PID"
 
+# Extract the DBUS_SESSION_BUS_ADDRESS
 export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$PID/environ | tr -d '\0' | cut -d= -f2-)
 if [ -z "$DBUS_SESSION_BUS_ADDRESS" ]; then
     echo "Failed to get DBUS_SESSION_BUS_ADDRESS from PID $PID"
